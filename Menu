@@ -1,0 +1,68 @@
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+
+public class Main extends Application 
+{
+	public void start (Stage primaryStage)
+	{
+		Group root = new Group();
+		Rectangle r = new Rectangle(10,10);
+		r.setFill(Color.RED);
+		/*Button b1 = new Button ("Test");
+		Button b2 = new Button ("Test 2");*/
+
+		root.getChildren().addAll(r);
+		r.setLayoutX(300);
+		
+		//////////Action Events
+		
+		r.setOnMouseClicked(me-> doTheStuff());
+		
+		
+		
+		///////////
+		
+		
+		Scene scene = new Scene(root, 600, 600);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		
+		scene.setOnKeyPressed(e ->
+		{
+			if (e.getCode()==KeyCode.W)
+				r.setLayoutY(r.getLayoutY()-2);
+			else if (e.getCode()==KeyCode.A)
+				r.setLayoutX(r.getLayoutX()-2);
+			else if (e.getCode()==KeyCode.S)
+				r.setLayoutY(r.getLayoutY()+2);
+			else if (e.getCode()==KeyCode.D)
+				r.setLayoutX(r.getLayoutX()+2);
+			else if ((e.getCode()==KeyCode.W) && (e.getCode()==KeyCode.D))
+			{
+				r.setLayoutY(r.getLayoutY()-2);
+				r.setLayoutX(r.getLayoutX()+2);
+
+
+			}
+		});
+		
+	}
+	
+	void doTheStuff()
+	{
+		System.out.println("hi");
+	}
+	
+
+	public static void main(String[] args) 
+	{
+		launch(args);
+
+	}
+
+}
